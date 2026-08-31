@@ -10,7 +10,7 @@ import { getItem, setItem } from './storage';
 
 const FONT_CSS = `
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-.cft-root { --bg:#EDF2E7; --rule:#C7D6BE; --surface:#FBFCF8; --ink:#1E2620; --ink-soft:#5B6656; --navy:#1F3452; --brick:#A23E2E; --brick-soft:#F3DCD5; --green:#3F6B4A; --green-soft:#DCEADF; --gold:#93701F; --gold-soft:#F1E6C8; background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; }
+.cft-root { --bg:#EDF2E7; --rule:#C7D6BE; --surface:#FBFCF8; --ink:#1E2620; --ink-soft:#5B6656; --navy:#1F3452; --brick:#A23E2E; --brick-soft:#F3DCD5; --green:#3F6B4A; --green-soft:#DCEADF; --amber:#D18B00; --gold:#93701F; --gold-soft:#F1E6C8; background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; }
 .cft-root *, .cft-root *::before, .cft-root *::after { box-sizing:border-box; }
 .cft-serif { font-family:'IBM Plex Serif',serif; }
 .cft-mono { font-family:'IBM Plex Mono',monospace; }

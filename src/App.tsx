@@ -135,6 +135,7 @@ function fmtDateLabel(iso) {
 
 function emptyChapterState() {
   return {
+    importance: 'medium',
     rev1: { done: false, date: null },
     rev2: { done: false, date: null },
     rev3: { done: false, date: null },
@@ -311,11 +312,42 @@ function ChapterRow({ item, state, overdueDays, isOpen, onToggleOpen, onUpdate, 
           <span className="block truncate" style={{ fontSize: 14, color: 'var(--ink)' }}>{item.name}</span>
           {st.remarks && <span className="block truncate italic" style={{ fontSize: 12, color: 'var(--ink-soft)' }}>{st.remarks}</span>}
         </span>
-        <span className="flex items-center gap-1 flex-shrink-0">
-          <Dot done={st.rev1?.done} />
-          <Dot done={st.rev2?.done} />
-          <Dot done={st.rev3?.done} />
-        </span>
+<span
+  className="flex items-center gap-1.5 flex-shrink-0"
+  onClick={(e) => e.stopPropagation()}
+>
+  {[
+    { key: 'rev1', label: 'R1' },
+    { key: 'rev2', label: 'R2' },
+    { key: 'rev3', label: 'R3' },
+  ].map(({ key, label }) => {
+    const done = st[key]?.done;
+
+    return (
+      <button
+        key={key}
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleRev(key);
+        }}
+        className="flex flex-col items-center justify-center rounded-full border"
+        style={{
+          width: 34,
+          height: 34,
+          fontSize: 10,
+          fontWeight: 700,
+          borderColor: done ? 'var(--green)' : 'var(--rule)',
+          background: done ? 'var(--green)' : 'var(--surface)',
+          color: done ? '#fff' : 'var(--ink-soft)',
+        }}
+        title={`${label} ${done ? 'completed' : 'not completed'}`}
+      >
+        {done ? <Check size={14} /> : label}
+      </button>
+    );
+  })}
+</span>
         <ChevronDown size={16} style={{ color: 'var(--ink-soft)', transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.15s', flexShrink: 0 }} />
       </button>
       {isOpen && (

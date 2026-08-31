@@ -305,13 +305,62 @@ function ChapterRow({ item, state, overdueDays, isOpen, onToggleOpen, onUpdate, 
 
   return (
     <div className="border-b" style={{ borderColor: 'var(--rule)' }}>
-      <button onClick={onToggleOpen} className="w-full flex items-center gap-2 py-2.5 px-3 text-left">
+      <button
+  onClick={onToggleOpen}
+  className="w-full flex items-center gap-2 py-2.5 px-3 text-left"
+  style={{ position: 'relative' }}
+>
         {overdueStage && <AlertTriangle size={14} style={{ color: 'var(--brick)', flexShrink: 0 }} />}
         <span className="cft-mono flex-shrink-0" style={{ fontSize: 12, width: 24, color: 'var(--ink-soft)' }}>{item.number}</span>
         <span className="flex-1 min-w-0">
           <span className="block truncate" style={{ fontSize: 14, color: 'var(--ink)' }}>{item.name}</span>
           {st.remarks && <span className="block truncate italic" style={{ fontSize: 12, color: 'var(--ink-soft)' }}>{st.remarks}</span>}
         </span>
+         <button
+  type="button"
+  onClick={(e) => {
+    e.stopPropagation();
+
+    const order = ['high', 'medium', 'low'];
+    const current = st.importance || 'medium';
+    const next = order[(order.indexOf(current) + 1) % order.length];
+
+    onUpdate({ importance: next }, true);
+  }}
+  title={`Priority: ${(st.importance || 'medium').toUpperCase()}`}
+  style={{
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    minWidth: 92,
+    height: 30,
+    padding: '0 12px',
+    borderRadius: 999,
+    border: 'none',
+    fontSize: 10,
+    fontWeight: 800,
+    letterSpacing: 0.8,
+    zIndex: 5,
+
+    background:
+      (st.importance || 'medium') === 'high'
+        ? '#E85A2A'
+        : (st.importance || 'medium') === 'medium'
+        ? '#D98A16'
+        : '#F2C94C',
+
+    color:
+      (st.importance || 'medium') === 'low'
+        ? '#5A4A00'
+        : '#FFFFFF',
+  }}
+>
+  {(st.importance || 'medium') === 'high'
+    ? 'HIGH'
+    : (st.importance || 'medium') === 'medium'
+    ? 'MEDIUM'
+    : 'LOW'}
+</button>
 <span
   className="flex items-center gap-1.5 flex-shrink-0"
   onClick={(e) => e.stopPropagation()}

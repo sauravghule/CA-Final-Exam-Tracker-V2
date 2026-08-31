@@ -330,7 +330,7 @@ function ChapterRow({ item, state, overdueDays, isOpen, onToggleOpen, onUpdate, 
   title={`Priority: ${(st.importance || 'medium').toUpperCase()}`}
   style={{
     position: 'absolute',
-    left: '50%',
+    left: '75%',
     transform: 'translateX(-50%)',
     minWidth: 92,
     height: 30,

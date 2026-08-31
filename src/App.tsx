@@ -365,43 +365,6 @@ function ChapterRow({ item, state, overdueDays, isOpen, onToggleOpen, onUpdate, 
   className="flex items-center gap-1.5 flex-shrink-0"
   onClick={(e) => e.stopPropagation()}
 >
-<button
-  type="button"
-  onClick={(e) => {
-    e.stopPropagation();
-    const order = ['high', 'medium', 'low'];
-    const current = st.importance || 'medium';
-    const next = order[(order.indexOf(current) + 1) % order.length];
-    onUpdate({ importance: next });
-  }}
-  title={`Importance: ${(st.importance || 'medium').toUpperCase()}`}
-  className="flex items-center justify-center rounded-full border flex-shrink-0"
-  style={{
-    width: 28,
-    height: 28,
-    fontSize: 10,
-    fontWeight: 800,
-    borderColor:
-      (st.importance || 'medium') === 'high'
-        ? 'var(--brick)'
-        : (st.importance || 'medium') === 'medium'
-        ? 'var(--amber)'
-        : 'var(--green)',
-    color: '#fff',
-    background:
-      (st.importance || 'medium') === 'high'
-        ? 'var(--brick)'
-        : (st.importance || 'medium') === 'medium'
-        ? 'var(--amber)'
-        : 'var(--green)',
-  }}
->
-  {(st.importance || 'medium') === 'high'
-    ? 'H'
-    : (st.importance || 'medium') === 'medium'
-    ? 'M'
-    : 'L'}
-</button>
   {[
     { key: 'rev1', label: 'R1' },
     { key: 'rev2', label: 'R2' },
